@@ -8,6 +8,7 @@ This repository implements an **Incremental Federated Learning** approach for Vi
 
 ```bash
 pip install numpy>=1.20.0 torch>=2.0.0 torchvision>=0.15.0 scikit-learn>=1.0.0 flwr>=1.0.0 opencv-python>=4.5.0
+https://github.com/adap/flower.git
 ```
 > **Optional:** Install ImageBind for enhanced feature extraction (fallback to ResNet if unavailable).
 
