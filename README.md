@@ -4,109 +4,118 @@ This repository implements an **Incremental Federated Learning** approach for Vi
 
 ---
 
-## Requirements
+## 📦 Requirements
 
-- **numpy** >= 1.20.0
-- **torch** >= 2.0.0
-- **torchvision** >= 0.15.0
-- **scikit-learn** >= 1.0.0
-- **flwr** >= 1.0.0
-- **opencv-python** >= 4.5.0
-
-> **Optional:** ImageBind (if not available, ResNet will be used as fallback)
+```bash
+pip install numpy>=1.20.0 torch>=2.0.0 torchvision>=0.15.0 scikit-learn>=1.0.0 flwr>=1.0.0 opencv-python>=4.5.0
+```
+> **Optional:** Install ImageBind for enhanced feature extraction (fallback to ResNet if unavailable).
 
 ---
 
 ## 🌟 Features
 
-- **Multi-modal feature extraction** using ImageBind and Transformer architecture
-- **Privacy-preserving federated learning** with the Flower framework
-- **Semi-supervised learning** with dynamic pseudo-labeling
-- **Adaptive model aggregation** using Shapley value contributions
-- **Continual improvement** through incremental learning
+✅ Multi-modal feature extraction using ImageBind and Transformer architecture  
+✅ Privacy-preserving federated learning with the Flower framework  
+✅ Semi-supervised learning with dynamic pseudo-labeling  
+✅ Adaptive model aggregation using Shapley value contributions  
+✅ Continual improvement through incremental learning  
 
 ---
 
 ## 📋 Overview
 
-The system consists of several key components:
+### 1️⃣ Feature Extraction  
+- Uses `ImageBindTransformerExtractor` to extract features from video frames  
+- Supports **ImageBind (preferred)** and **ResNet-50 (fallback)**  
+- Transformer processes sequential frame relationships  
 
-### 1. Feature Extraction
+### 2️⃣ Violence Detection Model  
+- Neural network utilizing **self-attention** and **positional encoding**  
+- Outputs **violence probability** per video segment  
 
-The `ImageBindTransformerExtractor` class extracts high-level features from video frames using either:
+### 3️⃣ Federated Learning System  
+- Clients train locally while a central server **aggregates updates**  
+- **No raw data sharing** → **Privacy-preserving training**  
 
-- Pre-trained ImageBind model (if available)
-- ResNet-50 as fallback
+### 4️⃣ Pseudo-labeling Mechanism  
+- **Coarse-grained:** Assigns **video-level** labels via statistics  
+- **Fine-grained:** Detects **specific violent segments** within anomalous videos  
 
-Features are then processed through a Transformer architecture to capture temporal relationships.
-
-### 2. Violence Detection Model
-
-The `TransformerViolenceDetector` is a neural network that:
-
-- Processes temporal sequence features
-- Uses self-attention mechanisms with positional encoding
-- Outputs violence probability for video segments
-
-### 3. Federated Learning System
-
-The system implements a federated learning approach where:
-
-- Multiple clients train models on local private data
-- A central server aggregates model updates without accessing raw data
-- Knowledge is shared while preserving privacy
-
-### 4. Pseudo-labeling Mechanism
-
-The system employs a two-stage pseudo-labeling approach:
-
-- **Coarse-grained:** Assigns video-level labels based on statistical representations
-- **Fine-grained:** Identifies specific violent segments within anomalous videos
-
-### 5. Decoupled Shapley Aggregation
-
-The `IFLVADDSAStrategy` implements a novel aggregation strategy:
-
-- Weights client contributions using Shapley values
-- Decouples individual and interactive importance
-- Adapts to client data quality and diversity
+### 5️⃣ Decoupled Shapley Aggregation  
+- Weighs **client contributions dynamically** using **Shapley values**  
+- Improves fairness in **model updates**  
 
 ---
 
 ## 🔍 Technical Details
 
-### IFLVADDSA Client
+### 🖥️ Client-Side Processing  
+- Extracts **video features**  
+- Applies **pseudo-labeling**  
+- Trains local models  
+- Updates pseudo-labels based on **server feedback**  
 
-The client performs:
+### 📡 Server-Side Processing  
+- Maintains a **global statistical model**  
+- Uses **Shapley-weighted** federated aggregation  
+- Adjusts **pseudo-labeling dynamically**  
 
-- Local feature extraction
-- Statistical analysis for pseudo-labeling
-- Local model training
-- Adaptive pseudo-label updates based on model predictions
-
-### IFLVADDSA Strategy
-
-The server-side strategy:
-
-- Maintains a global statistical model
-- Computes Shapley-based weights for client updates
-- Dynamically updates PCA matrix for dimensionality reduction
-- Adaptively adjusts pseudo-labeling rules based on client feedback
-
-### Data Processing
-
-- Processes video data in segments of 16 frames
-- Extracts features using pre-trained models
-- Applies transformer encoding to capture temporal patterns
+### 📊 Data Processing Pipeline  
+- Processes **video frames in 16-frame segments**  
+- Uses **pre-trained models** for feature extraction  
+- Applies **transformer encoding** for temporal dependencies  
 
 ---
 
-## 🚀 Usage
+## 🚀 How to Run
 
-The system is designed to work with the **XD-Violence dataset，UCF-Crime**. The main simulation can be run with:
+The system supports the **XD-Violence dataset，UCF-Crime**. To start training:  
 
 ```bash
 python code.py
+```
 
+### Steps:  
+✅ Initializes **clients & server**  
+✅ Distributes **data partitions**  
+✅ Runs **federated learning simulation (10 rounds)**  
+✅ Evaluates **AUC metric**  
+
+---
+
+## 📊 Evaluation Metrics  
+- **ROC AUC score** → Measures classification performance  
+- **Explicit detection rate** → Identifies violent segments  
+- **Privacy metrics** → Ensures federated security  
+
+---
+
+## 🔧 Implementation Details  
+- Built with **PyTorch** + **Flower**  
+- Supports **GPU acceleration**  
+- Adaptive **parameter tuning**  
+- **Dynamic pseudo-label thresholds**  
+
+---
+
+## 📄 Citation
+
+If you use this code in your research, please cite:
+
+```bibtex
+@article{iflvaddsa2025,
+  title={Incremental Federated Learning for Violence Activity Detection using Decoupled Shapley Aggregation},
+  author={Your Name},
+  journal={arXiv preprint},
+  year={2025}
+}
+```
+
+---
+
+## 📜 License  
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
 
 
