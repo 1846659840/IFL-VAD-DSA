@@ -105,9 +105,9 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @article{iflvaddsa2025,
-  title={Incremental Federated Learning for Violence Activity Detection using Decoupled Shapley Aggregation},
-  author={Your Name},
-  journal={arXiv preprint},
+  title={Towards Scalable and Interpretable Federated Learning for Unsupervised Smart City Video Anomaly Detection},
+  author={ Wen-Dong Jiang, Graduate Student Member, IEEE, Chih-Yung Chang, Member, IEEE, and Diptendu Sinha Roy, Senior Member, IEEE.},
+  journal={sunbmitted to IEEE Trans on Mobile Computing},
   year={2025}
 }
 ```
