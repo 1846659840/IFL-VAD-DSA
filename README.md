@@ -1,4 +1,4 @@
-# IFL-VAD-DSA: Federated Learning Violence Detection System
+# Towards Scalable and Interpretable Federated Learning for Unsupervised Smart City Video Anomaly Detection
 
 This project implements a violence detection system based on federated learning, utilizing decoupled Shapley aggregation method to enhance joint training effectiveness. The system leverages video feature extraction and Transformer architecture for violence behavior recognition.
 
@@ -75,8 +75,8 @@ If you use this code, please cite:
 
 ```
 @article{IFL-VAD-DSA,
-  title={Interpretable Federated Learning for Video Anomaly Detection with Decoupled Shapley Aggregation},
-  author={Your Name},
-  year={2023}
+  title={Towards Scalable and Interpretable Federated Learning for Unsupervised Smart City Video Anomaly Detection},
+  author={Wen-Dong Jiang, Graduate Student Member, IEEE, Chih-Yung Chang, Member, IEEE, and Diptendu Sinha Roy, Senior Member, IEEE.},
+  year={2025}
 }
 ``` 
